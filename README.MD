@@ -197,14 +197,16 @@ Before relying on the keep-alive:
 
 ### Architecture
 
-```
-Popup (UI)
-   ↕
-Service Worker
-   ↕
-Offscreen Document
-   ↕
-Chrome APIs (alarms, storage, audio)
+```mermaid
+flowchart LR
+    Popup["Popup (UI)"]
+    Worker["Service Worker (Manifest V3)"]
+    Offscreen["Offscreen Document"]
+    ChromeAPI["Chrome Extension APIs<br/>- alarms<br/>- storage<br/>- runtime"]
+
+    Popup <--> Worker
+    Worker <--> Offscreen
+    Worker --> ChromeAPI
 ```
 
 ### How It Works
@@ -279,3 +281,4 @@ Copyright (c) 2026 Jerry Lee
 ---
 
 **Enjoy uninterrupted audio. 🔊**
+
